@@ -24,7 +24,7 @@ class RecipeModelTest(RecipeTestBase):
     recipe = Recipe.objects.create(
       title = 'title' ,
       description = 'description' ,
-      slug = 'slug' ,
+      slug = 'slug-slug',
       preparation_time = 10 ,
       preparation_time_unit = 'minutes' ,
       servings = 5 ,
