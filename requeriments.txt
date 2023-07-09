@@ -14,5 +14,6 @@ pycodestyle==2.10.0
 pyflakes==3.0.1
 pytest==7.4.0
 pytest-django==4.5.2
+python-dotenv==1.0.0
 sqlparse==0.4.4
 typing_extensions==4.7.0
