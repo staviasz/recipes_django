@@ -41,10 +41,7 @@ class RecipeViewHomeTest(RecipeTestBase):
 
   @patch('recipes.views.PER_PAGE', new=3)
   def test_recipe_home_is_pagination(self):
-    for i in range(8):
-      kwargs = {'author_data': {'username': f'u{i}'}, 'slug': f'r{i}'}
-      self.make_recipe(**kwargs)
-
+    self.make_recipe_in_batch(8)
 
     response = self.client.get(reverse('recipes:home'))
     recipes_response = response.context['recipes']
@@ -54,4 +51,5 @@ class RecipeViewHomeTest(RecipeTestBase):
     self.assertEqual(len(paginator.get_page(1)), 3)
     self.assertEqual(len(paginator.get_page(2)), 3)
     self.assertEqual(len(paginator.get_page(3)), 2)
+
 
