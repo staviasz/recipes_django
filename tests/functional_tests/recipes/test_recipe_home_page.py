@@ -10,13 +10,13 @@ from tests.base_functional_test import BaseFunctionalTest
 @pytest.mark.functional_test
 class RecipeHomePageFunctionalTest(BaseFunctionalTest):
 
-  @patch('recipes.views.PER_PAGE', new=6)
+  @patch('recipes.views.site.PER_PAGE', new=6)
   def test_recipe_home_page_without_recipes_error_messages(self):
     self.browser.get(self.live_server_url)
     body = self.browser.find_element(By.TAG_NAME, 'body')
     self.assertIn('No recipes found here', body.text)
 
-  @patch('recipes.views.PER_PAGE', new=6)
+  @patch('recipes.views.site.PER_PAGE', new=6)
   def test_recipe_search_input_can_find_correct_recipes(self):
     recipes = self.make_recipe_in_batch()
     self.browser.get(self.live_server_url)
@@ -33,7 +33,7 @@ class RecipeHomePageFunctionalTest(BaseFunctionalTest):
       self.browser.find_element(By.CLASS_NAME, 'main-content-list').text
     )
 
-  @patch('recipes.views.PER_PAGE', new=2)
+  @patch('recipes.views.site.PER_PAGE', new=2)
   def test_recipe_page_pagination(self):
     self.make_recipe_in_batch()
     self.browser.get(self.live_server_url)

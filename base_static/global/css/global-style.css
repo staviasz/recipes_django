@@ -517,7 +517,7 @@ a {
 .button-close-menu {
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  left: 230px;
   color: var(--color-white);
   background: none;
   border: none;

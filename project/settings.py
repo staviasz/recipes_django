@@ -39,18 +39,26 @@ INSTALLED_APPS = [
   'django.contrib.sessions',
   'django.contrib.messages',
   'django.contrib.staticfiles',
+  'rest_framework',
   'recipes',
   'authors',
+
+
+  'debug_toolbar'
 ]
 
 MIDDLEWARE = [
   'django.middleware.security.SecurityMiddleware',
+
+  'debug_toolbar.middleware.DebugToolbarMiddleware',
+
   'django.contrib.sessions.middleware.SessionMiddleware',
   'django.middleware.common.CommonMiddleware',
   'django.middleware.csrf.CsrfViewMiddleware',
   'django.contrib.auth.middleware.AuthenticationMiddleware',
   'django.contrib.messages.middleware.MessageMiddleware',
   'django.middleware.clickjacking.XFrameOptionsMiddleware',
+  'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -119,6 +127,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = [
+  BASE_DIR / 'locale'
+]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -144,3 +156,10 @@ MESSAGE_TAGS = {
   constants.INFO : 'message-info',
   constants.WARNING : 'message-warning'
 }
+
+
+INTERNAL_IPS = [
+  "127.0.0.1",
+]
+
+

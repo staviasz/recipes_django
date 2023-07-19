@@ -39,7 +39,7 @@ class RecipeViewHomeTest(RecipeTestBase):
 
     self.assertIn('No recipes found here', response.content.decode('utf-8'))
 
-  @patch('recipes.views.PER_PAGE', new=3)
+  @patch('recipes.views.site.PER_PAGE', new=3)
   def test_recipe_home_is_pagination(self):
     self.make_recipe_in_batch(8)
 
