@@ -1,3 +1,5 @@
+from random import SystemRandom
+import string
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.functions import Concat
@@ -26,10 +28,10 @@ class RecipeManager(models.Manager):
     ) \
       .order_by('-id') \
       .select_related('category', 'author') \
-      .prefetch_related('tags')
 
 
 class Recipe(models.Model):
+  objects = RecipeManager()
   title = models.CharField(max_length=65)
   description = models.CharField(max_length=165)
   slug = models.SlugField(unique=True)
@@ -60,7 +62,12 @@ class Recipe(models.Model):
 
   def save(self, *args, **kwargs):
     if not self.slug:
-      slug = f'{slugify(self.title)}'
-      self.slug = slug
-      
+      rand_letters = ''.join(
+        SystemRandom().choices(
+          string.ascii_letters + string.digits,
+          k=5,
+        )
+      )
+      self.slug = f'{slugify(self.title)}-{rand_letters}'
+
     return super().save(*args, **kwargs)
